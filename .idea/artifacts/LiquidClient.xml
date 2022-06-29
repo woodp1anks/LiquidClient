@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LiquidClient">
+    <output-path>$PROJECT_DIR$/out/artifacts/LiquidClient</output-path>
+    <root id="archive" name="LiquidClient.jar">
+      <element id="module-output" name="LiquidClient" />
+    </root>
+  </artifact>
+</component>
