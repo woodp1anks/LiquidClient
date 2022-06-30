@@ -11,7 +11,7 @@ public class ToggleZoom extends Mod {
     private float zoomFov;
     private boolean isZoomed;
 
-    public ToggleZoom(float zoomFov) {
+    public ToggleZoom() {
         super("ToggleZoom", Category.RENDER);
         setZoomFov(30);
         this.defaultFov = Minecraft.getMinecraft().gameSettings.fovSetting;

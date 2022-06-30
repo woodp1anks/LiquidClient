@@ -72,10 +72,11 @@ public class ModManager {
         mods.add(new ToggleSprint());
         mods.add(new AntiBlind());
         mods.add(new FullBright());
-        mods.add(new ToggleZoom(30));
+        mods.add(new ToggleZoom());
         mods.add(new woodp1anks.liquidclient.mod.mods.render.ArrayList());
         mods.add(new HitBox());
         mods.add(new TabGUI());
+        mods.add(new KeyStrokes());
     }
 
     public void onKeyPressed(int key) {

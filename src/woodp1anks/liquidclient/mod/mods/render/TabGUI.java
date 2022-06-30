@@ -5,6 +5,8 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Keyboard;
 import woodp1anks.liquidclient.LiquidClient;
+import woodp1anks.liquidclient.misc.Animation;
+import woodp1anks.liquidclient.misc.AnimationMode;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 
@@ -45,6 +47,7 @@ public class TabGUI extends Mod {
                     currentMod++;
                 }
             }
+
         } else if (key == Keyboard.KEY_RETURN || key == Keyboard.KEY_RIGHT) {
             if (modTabVisible) {
                 LiquidClient.modManager.getMods(Category.values()[currentCategory]).get(currentMod).setEnabled(!LiquidClient.modManager.getMods(Category.values()[currentCategory]).get(currentMod).isEnabled());
@@ -57,6 +60,7 @@ public class TabGUI extends Mod {
     }
 
     private void drawTab(int x, int y) {
+
         FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
         String maxLengthCategoryName = "";
         for (Category category : Category.values()) {
@@ -69,7 +73,7 @@ public class TabGUI extends Mod {
         int i = 0;
         for (Category value : Category.values()) {
             if (i == currentCategory) {
-                Gui.drawRect(x,fontY,x + font.getStringWidth(maxLengthCategoryName),y + (font.FONT_HEIGHT * currentCategory + 1) + font.FONT_HEIGHT,Color.GRAY.getRGB());
+                Gui.drawRect(x,fontY,x + font.getStringWidth(maxLengthCategoryName),fontY + font.FONT_HEIGHT,Color.GRAY.getRGB());
             }
             font.drawStringWithShadow(value.name(),x,fontY, LiquidClient.MAIN_COLOR.getRGB());
             fontY += font.FONT_HEIGHT;
