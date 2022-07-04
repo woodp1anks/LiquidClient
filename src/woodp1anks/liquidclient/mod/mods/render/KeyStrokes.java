@@ -5,7 +5,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
-import woodp1anks.liquidclient.misc.Animation;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 
@@ -34,7 +33,7 @@ public class KeyStrokes extends Mod {
     private int RMBy;
 
     public KeyStrokes() {
-        super("KeyStrokes", Category.RENDER);
+        super("KeyStrokes", Category.Render);
     }
 
     @Override

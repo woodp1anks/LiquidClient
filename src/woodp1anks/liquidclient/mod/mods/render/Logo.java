@@ -8,7 +8,7 @@ import woodp1anks.liquidclient.mod.Mod;
 
 public class Logo extends Mod {
     public Logo() {
-        super("Logo", Category.RENDER);
+        super("Logo", Category.Render);
     }
 
     @Override

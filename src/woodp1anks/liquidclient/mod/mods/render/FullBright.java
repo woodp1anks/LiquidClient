@@ -6,7 +6,7 @@ import woodp1anks.liquidclient.mod.Mod;
 
 public class FullBright extends Mod {
     public FullBright() {
-        super("FullBright", Category.RENDER);
+        super("FullBright", Category.Render);
     }
 
     @Override

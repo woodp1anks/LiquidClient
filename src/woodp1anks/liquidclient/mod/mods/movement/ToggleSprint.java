@@ -13,7 +13,7 @@ public class ToggleSprint extends Mod {
     private static boolean toggledSprint;
 
     public ToggleSprint() {
-        super("ToggleSprint", Category.MOVEMENT);
+        super("ToggleSprint", Category.Movement);
     }
 
     @Override

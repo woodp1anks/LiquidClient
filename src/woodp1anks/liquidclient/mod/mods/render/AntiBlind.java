@@ -11,7 +11,7 @@ public class AntiBlind extends Mod {
     private float fireAlpha;
 
     public AntiBlind() {
-        super("AntiBlind", Category.RENDER);
+        super("AntiBlind", Category.Render);
     }
 
     public boolean isPumpkinDisabled() {

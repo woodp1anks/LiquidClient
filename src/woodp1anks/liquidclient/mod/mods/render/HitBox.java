@@ -10,7 +10,7 @@ import woodp1anks.liquidclient.mod.Mod;
 
 public class HitBox extends Mod {
     public HitBox() {
-        super("HitBox", Category.RENDER);
+        super("HitBox", Category.Render);
     }
 
     @Override

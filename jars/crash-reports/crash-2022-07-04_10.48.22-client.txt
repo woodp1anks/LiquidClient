@@ -1,0 +1,80 @@
+---- Minecraft Crash Report ----
+// Shall we play a game?
+
+Time: 04/07/22 10:48
+Description: Unexpected error
+
+java.lang.IllegalStateException: This is not a JSON Array.
+	at com.google.gson.JsonElement.getAsJsonArray(JsonElement.java:106)
+	at woodp1anks.liquidclient.config.Config.toString(Config.java:48)
+	at woodp1anks.liquidclient.mod.mods.render.ArrayList.draw(ArrayList.java:86)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:168)
+	at net.minecraft.client.renderer.EntityRenderer.func_181560_a(EntityRenderer.java:1170)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1131)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:421)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at com.google.gson.JsonElement.getAsJsonArray(JsonElement.java:106)
+	at woodp1anks.liquidclient.config.Config.toString(Config.java:48)
+	at woodp1anks.liquidclient.mod.mods.render.ArrayList.draw(ArrayList.java:86)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:168)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player0'/138, l='MpServer', x=-41.99, y=71.00, z=437.88]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 3880499 game time, 3879879 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 6 total; [EntitySquid['Squid'/160, l='MpServer', x=-102.72, y=61.31, z=451.41], EntitySquid['Squid'/193, l='MpServer', x=-10.47, y=61.84, z=398.50], EntitySquid['Squid'/163, l='MpServer', x=-95.38, y=59.13, z=456.16], EntitySquid['Squid'/169, l='MpServer', x=-75.81, y=61.91, z=495.75], EntitySquid['Squid'/170, l='MpServer', x=-77.59, y=62.56, z=492.16], EntityPlayerSP['Player0'/138, l='MpServer', x=-41.99, y=71.00, z=437.88]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:380)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2753)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:450)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_332, Amazon.com Inc.
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Amazon.com Inc.
+	Memory: 174552512 bytes (166 MB) / 618135552 bytes (589 MB) up to 1873805312 bytes (1787 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: mcp
+	LWJGL: 2.9.4
+	OpenGL: Intel(R) UHD Graphics 620 GL version 4.6.0 - Build 30.0.101.1340, Intel
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 8x Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz

@@ -1,12 +1,17 @@
 package woodp1anks.liquidclient;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import woodp1anks.liquidclient.command.CommandManager;
+import woodp1anks.liquidclient.config.Config;
 import woodp1anks.liquidclient.misc.Rainbow;
 import woodp1anks.liquidclient.config.ConfigManager;
 import woodp1anks.liquidclient.mod.ModManager;
 
 import java.awt.*;
+import java.sql.Time;
 
 public class LiquidClient {
     public static final String NAME = "LiquidClient";
@@ -24,8 +29,20 @@ public class LiquidClient {
         commandManager = new CommandManager();
 
         modManager.load();
-        configManager.load();
         commandManager.load();
+        configManager.load();
+
+        for (Config config : configManager.getConfigs()) {
+            if (!config.getPath().toFile().exists()) {
+                configManager.save();
+                configManager.load();
+                configManager.save();
+                configManager.load();
+                configManager.save();
+                configManager.load();
+                break;
+            }
+        }
 
         rainbow = new Rainbow(160,160,160,255,255,255,5);
 

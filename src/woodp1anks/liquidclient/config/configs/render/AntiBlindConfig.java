@@ -17,39 +17,21 @@ public class AntiBlindConfig extends Config {
     }
 
     @Override
-    public void load() {
-        try {
-            JsonObject jsonObject = new Gson().fromJson(new String(Files.readAllBytes(getPath()), StandardCharsets.UTF_8),JsonObject.class);
-            AntiBlind antiBlind = (AntiBlind) LiquidClient.modManager.getMod("AntiBlind");
-            if (jsonObject.has("disablepumpkin")) {
-                antiBlind.setDisablePumpkin(jsonObject.get("disablepumpkin").getAsBoolean());
-            }
-            if (jsonObject.has("disableblind")) {
-                antiBlind.setDisableBlind(jsonObject.get("disableblind").getAsBoolean());
-            }
-            if (jsonObject.has("nocontainerbg")) {
-                antiBlind.setNoContainerBg(jsonObject.get("nocontainerbg").getAsBoolean());
-            }
-            if (jsonObject.has("firealpha")) {
-                antiBlind.setFireAlpha(jsonObject.get("firealpha").getAsFloat());
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void syncStart() {
+        AntiBlind antiBlind = (AntiBlind) LiquidClient.modManager.getMod("AntiBlind");
+        antiBlind.setDisablePumpkin(Boolean.parseBoolean(get("disablepumpkin", String.valueOf(true))));
+        antiBlind.setDisableBlind(Boolean.parseBoolean(get("disableblind", String.valueOf(true))));
+        antiBlind.setNoContainerBg(Boolean.parseBoolean(get("nocontainerbg", String.valueOf(true))));
+        antiBlind.setFireAlpha(Float.parseFloat(get("firealpha", String.valueOf(0.1F))));
     }
 
     @Override
-    public void save() {
-        JsonObject jsonObject = new JsonObject();
+    public void syncStop() {
         AntiBlind antiBlind = (AntiBlind) LiquidClient.modManager.getMod("AntiBlind");
-        jsonObject.addProperty("disablepumpkin",antiBlind.isPumpkinDisabled());
-        jsonObject.addProperty("disableblind",antiBlind.isBlindDisabled());
-        jsonObject.addProperty("nocontainerbg",antiBlind.isContainerBgDisabled());
-        jsonObject.addProperty("fireAlpha",antiBlind.getFireAlpha());
-        try {
-            Files.write(getPath(),jsonObject.toString().getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        set("disablepumpkin", String.valueOf(antiBlind.isPumpkinDisabled()));
+        set("disableblind", String.valueOf(antiBlind.isBlindDisabled()));
+        set("nocontainerbg", String.valueOf(antiBlind.isContainerBgDisabled()));
+        set("firealpha", String.valueOf(antiBlind.getFireAlpha()));
     }
+
 }

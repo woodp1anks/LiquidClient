@@ -7,6 +7,8 @@ import woodp1anks.liquidclient.LiquidClient;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 
+import java.awt.*;
+
 public class ArrayList extends Mod {
 
     private String startStr;
@@ -17,7 +19,7 @@ public class ArrayList extends Mod {
     private int argsB;
 
     public ArrayList() {
-        super("ArrayList", Category.RENDER);
+        super("ArrayList", Category.Render);
     }
 
     public String getStartStr() {
@@ -79,8 +81,13 @@ public class ArrayList extends Mod {
         for (Mod mod : LiquidClient.modManager.getEnabledMods()) {
             FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
             String textMod = mod.getName();
+            String textArgs = "";
+            if (!(LiquidClient.configManager.getConfig(mod.getName()) == null)) {
+                textArgs = LiquidClient.configManager.getConfig(mod.getName()).toString(startStr,middleStr,endStr);
+            }
 
-            font.drawStringWithShadow(textMod,width - font.getStringWidth(textMod) - 5,y,LiquidClient.rainbow.getColor().getRGB());
+            font.drawStringWithShadow(textMod,width - font.getStringWidth(textMod) - 5 - font.getStringWidth(textArgs),y,LiquidClient.rainbow.getColor().getRGB());
+            font.drawStringWithShadow(textArgs,width - font.getStringWidth(textArgs) - 5,y,new Color(argsR,argsG,argsB).getRGB());
 
             y += font.FONT_HEIGHT + 1;
         }

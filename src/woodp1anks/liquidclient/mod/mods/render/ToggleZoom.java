@@ -1,6 +1,7 @@
 package woodp1anks.liquidclient.mod.mods.render;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
@@ -12,7 +13,7 @@ public class ToggleZoom extends Mod {
     private boolean isZoomed;
 
     public ToggleZoom() {
-        super("ToggleZoom", Category.RENDER);
+        super("ToggleZoom", Category.Render);
         setZoomFov(30);
         this.defaultFov = Minecraft.getMinecraft().gameSettings.fovSetting;
     }

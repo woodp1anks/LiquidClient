@@ -1,14 +1,19 @@
 package woodp1anks.liquidclient.config;
 
+import com.google.gson.JsonObject;
+import woodp1anks.liquidclient.config.configs.MiscsConfig;
 import woodp1anks.liquidclient.config.configs.ModsConfig;
 import woodp1anks.liquidclient.config.configs.render.AntiBlindConfig;
 import woodp1anks.liquidclient.config.configs.render.ArrayListConfig;
+import woodp1anks.liquidclient.config.configs.render.TabGUIConfig;
 import woodp1anks.liquidclient.config.configs.render.ToggleZoomConfig;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ConfigManager {
     private final List<Config> configs = new ArrayList<Config>() {
@@ -17,6 +22,8 @@ public class ConfigManager {
             add(new AntiBlindConfig());
             add(new ArrayListConfig());
             add(new ToggleZoomConfig());
+            add(new TabGUIConfig());
+            add(new MiscsConfig());
         }
     };
 
