@@ -1,9 +1,9 @@
-package woodp1anks.liquidclient.misc;
+package woodp1anks.liquidclient.utils;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Rainbow {
+public class RainbowUtil {
 
     private int startR;
     private int startG;
@@ -19,7 +19,7 @@ public class Rainbow {
     private boolean gd;
     private boolean bd;
 
-    public Rainbow(int startR,int startG,int startB,int endR,int endG,int endB,int speed) {
+    public RainbowUtil(int startR, int startG, int startB, int endR, int endG, int endB, int speed) {
         this.startR = startR;
         this.startG = startG;
         this.startB = startB;

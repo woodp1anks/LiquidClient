@@ -1,24 +1,20 @@
 package woodp1anks.liquidclient;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import woodp1anks.liquidclient.command.CommandManager;
 import woodp1anks.liquidclient.config.Config;
-import woodp1anks.liquidclient.misc.Rainbow;
+import woodp1anks.liquidclient.utils.RainbowUtil;
 import woodp1anks.liquidclient.config.ConfigManager;
 import woodp1anks.liquidclient.mod.ModManager;
 
 import java.awt.*;
-import java.sql.Time;
 
 public class LiquidClient {
     public static final String NAME = "LiquidClient";
     public static final String VERSION = "0.1.0";
     public static final Color MAIN_COLOR = new Color(64, 198, 245);
     public static final Color NOT_MAIN_COLOR = new Color(75,150,255);
-    public static Rainbow rainbow;
+    public static RainbowUtil rainbow;
     public static ModManager modManager;
     public static ConfigManager configManager;
     public static CommandManager commandManager;
@@ -44,7 +40,7 @@ public class LiquidClient {
             }
         }
 
-        rainbow = new Rainbow(160,160,160,255,255,255,5);
+        rainbow = new RainbowUtil(160,160,160,255,255,255,5);
 
         Display.setTitle(NAME + " | " + VERSION);
     }

@@ -1,4 +1,4 @@
-package woodp1anks.liquidclient.misc;
+package woodp1anks.liquidclient.utils;
 @Deprecated
 public class Animation {
     @Deprecated

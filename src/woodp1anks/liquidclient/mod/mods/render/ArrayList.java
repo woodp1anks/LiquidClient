@@ -8,6 +8,7 @@ import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 
 import java.awt.*;
+import java.util.List;
 
 public class ArrayList extends Mod {
 

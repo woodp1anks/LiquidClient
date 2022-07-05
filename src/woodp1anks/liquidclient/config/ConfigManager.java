@@ -3,10 +3,7 @@ package woodp1anks.liquidclient.config;
 import com.google.gson.JsonObject;
 import woodp1anks.liquidclient.config.configs.MiscsConfig;
 import woodp1anks.liquidclient.config.configs.ModsConfig;
-import woodp1anks.liquidclient.config.configs.render.AntiBlindConfig;
-import woodp1anks.liquidclient.config.configs.render.ArrayListConfig;
-import woodp1anks.liquidclient.config.configs.render.TabGUIConfig;
-import woodp1anks.liquidclient.config.configs.render.ToggleZoomConfig;
+import woodp1anks.liquidclient.config.configs.render.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -24,6 +21,7 @@ public class ConfigManager {
             add(new ToggleZoomConfig());
             add(new TabGUIConfig());
             add(new MiscsConfig());
+            add(new KeyStrokesConfig());
         }
     };
 
