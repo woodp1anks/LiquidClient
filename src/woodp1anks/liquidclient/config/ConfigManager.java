@@ -22,6 +22,7 @@ public class ConfigManager {
             add(new TabGUIConfig());
             add(new MiscsConfig());
             add(new KeyStrokesConfig());
+            add(new PotionEffectsConfig());
         }
     };
 

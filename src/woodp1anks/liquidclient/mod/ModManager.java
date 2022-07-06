@@ -77,6 +77,7 @@ public class ModManager {
         mods.add(new HitBox());
         mods.add(new TabGUI());
         mods.add(new KeyStrokes());
+        mods.add(new PotionEffects());
     }
 
     public void onKeyPressed(int key) {
