@@ -21,18 +21,16 @@ public class HitBox extends Mod {
             double renderPosY = Minecraft.getMinecraft().getRenderManager().renderPosY;
             double renderPosZ = Minecraft.getMinecraft().getRenderManager().renderPosZ;
 
-            if (entity instanceof EntityLivingBase) {
-                if (!(entity.getName().equals(Minecraft.getMinecraft().thePlayer.getName()))) {
-                    AxisAlignedBB entityBoundingBox = entity.getEntityBoundingBox();
-                    RenderGlobal.func_181563_a(new AxisAlignedBB(
-                            entityBoundingBox.minX - renderPosX,
-                            entityBoundingBox.minY - renderPosY,
-                            entityBoundingBox.minZ - renderPosZ,
-                            entityBoundingBox.maxX - renderPosX,
-                            entityBoundingBox.maxY - renderPosY,
-                            entityBoundingBox.maxZ - renderPosZ
-                    ),255,255,255,255);
-                }
+            if (!(entity.getName().equals(Minecraft.getMinecraft().thePlayer.getName()))) {
+                AxisAlignedBB entityBoundingBox = entity.getEntityBoundingBox();
+                RenderGlobal.func_181563_a(new AxisAlignedBB(
+                        entityBoundingBox.minX - renderPosX,
+                        entityBoundingBox.minY - renderPosY,
+                        entityBoundingBox.minZ - renderPosZ,
+                        entityBoundingBox.maxX - renderPosX,
+                        entityBoundingBox.maxY - renderPosY,
+                        entityBoundingBox.maxZ - renderPosZ
+                ),255,255,255,255);
             }
         }
     }
