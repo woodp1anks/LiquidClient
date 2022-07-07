@@ -46,7 +46,7 @@ public class KillAura extends Mod {
                     ItemStack selfLeggings = player.getCurrentArmor(1);
 
                     ItemStack botBoots = livingBase.getCurrentArmor(0);
-                    ItemStack selfBoots = livingBase.getCurrentArmor(0);
+                    ItemStack selfBoots = player.getCurrentArmor(0);
 
                     if (botBoots != selfBoots || botHelmet != selfHelmet || botLeggings != selfLeggings || botChestPlate != selfChestPlate) {
                         isTarget = false;
