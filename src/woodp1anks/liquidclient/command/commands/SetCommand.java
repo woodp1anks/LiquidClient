@@ -33,7 +33,7 @@ public class SetCommand extends Command {
                     Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("§bLiquid§3Client §7>>§c this key is not exist!"));
                 }
             } else {
-                Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("§bLiquid§3Client §7>>§c you didn't need to set anything about this mod."));
+                Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("§bLiquid§3Client §7>>§c you didn't need to set anything about this mod or this mod is not exist."));
             }
         } else {
             Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("§bLiquid§3Client §7>>§c your must enter mod name,key,and arg."));

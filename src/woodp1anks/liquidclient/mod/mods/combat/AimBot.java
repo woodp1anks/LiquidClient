@@ -2,37 +2,29 @@ package woodp1anks.liquidclient.mod.mods.combat;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.client.C03PacketPlayer;
-import net.minecraft.network.play.client.C0APacketAnimation;
-import net.minecraft.util.MathHelper;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 import woodp1anks.liquidclient.utils.RotationUtil;
 
-public class KillAura extends Mod {
+public class AimBot extends Mod {
+    private double range;
+    private boolean onlyOnClick;
     private boolean antiBotPractice;
-    private boolean serverSlideRotation;
-    private int cps;
 
-    private int ticks;
-    private int hitTime;
-
-    public KillAura() {
-        super("KillAura", Category.Combat);
+    public AimBot() {
+        super("AimBot", Category.Combat);
     }
 
     @Override
     public void update() {
-        hitTime = 20 / cps;
         for (Entity entity : Minecraft.getMinecraft().theWorld.loadedEntityList) {
             if (entity instanceof EntityLivingBase) {
                 EntityLivingBase livingBase = (EntityLivingBase) entity;
-                if (!(livingBase == Minecraft.getMinecraft().thePlayer) && !entity.isDead && entity.getDistanceToEntity(Minecraft.getMinecraft().thePlayer) <= 3 && livingBase.getHealth() > 0) {
+                if (livingBase != Minecraft.getMinecraft().thePlayer && !entity.isDead && Minecraft.getMinecraft().thePlayer.getDistanceToEntity(livingBase) <= range && livingBase.getHealth() > 0) {
                     boolean isTarget = true;
                     if (antiBotPractice) {
                         EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
@@ -64,48 +56,42 @@ public class KillAura extends Mod {
                         if (botHelmetID != selfHelmetID || botChestPlateID != selfChestPlateID || botLeggingsID != selfLeggingsID || botBootsID != selfBootsID) {
                             isTarget = false;
                         }
+
                     }
-                    if (isTarget) {
-                        if (serverSlideRotation) {
-                            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C05PacketPlayerLook(RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ),RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ),Minecraft.getMinecraft().thePlayer.onGround));
-                        } else {
-                            Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
-                            Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
-                        }
-                        if (ticks >= hitTime) {
-                            Minecraft.getMinecraft().thePlayer.swingItem();
-                            Minecraft.getMinecraft().playerController.attackEntity(Minecraft.getMinecraft().thePlayer,entity);
-                            //KeyBinding.onTick(Minecraft.getMinecraft().gameSettings.keyBindAttack.getKeyCode());
-                            ticks = 0;
-                        }
+                    if (onlyOnClick && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown() && isTarget) {
+                        Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
+                        Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
+                    } else if (!onlyOnClick && isTarget){
+                        Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
+                        Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
+
                     }
                 }
             }
         }
-        ticks++;
     }
 
-    public boolean isAntiBotPractice() {
+    public double getRange() {
+        return range;
+    }
+
+    public boolean isOnlyOnClick() {
+        return onlyOnClick;
+    }
+
+    public boolean isAntiBotPracticeEnabled() {
         return antiBotPractice;
     }
 
-    public boolean isServerSlideRotation() {
-        return serverSlideRotation;
+    public void setRange(double range) {
+        this.range = range;
     }
 
-    public int getCps() {
-        return cps;
+    public void setOnlyOnClick(boolean onlyOnClick) {
+        this.onlyOnClick = onlyOnClick;
     }
 
     public void setAntiBotPractice(boolean antiBotPractice) {
         this.antiBotPractice = antiBotPractice;
-    }
-
-    public void setCps(int cps) {
-        this.cps = cps;
-    }
-
-    public void setServerSlideRotation(boolean serverSlideRotation) {
-        this.serverSlideRotation = serverSlideRotation;
     }
 }

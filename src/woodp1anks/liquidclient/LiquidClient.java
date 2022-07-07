@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class LiquidClient {
     public static final String NAME = "LiquidClient";
-    public static final String VERSION = "0.3.3";
+    public static final String VERSION = "0.4.0";
     public static final Color MAIN_COLOR = new Color(64, 198, 245);
     public static final Color NOT_MAIN_COLOR = new Color(75,150,255);
     public static RainbowUtil rainbow;

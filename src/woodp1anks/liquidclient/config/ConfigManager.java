@@ -3,6 +3,8 @@ package woodp1anks.liquidclient.config;
 import com.google.gson.JsonObject;
 import woodp1anks.liquidclient.config.configs.MiscsConfig;
 import woodp1anks.liquidclient.config.configs.ModsConfig;
+import woodp1anks.liquidclient.config.configs.combat.AimBotConfig;
+import woodp1anks.liquidclient.config.configs.combat.AutoClickerConfig;
 import woodp1anks.liquidclient.config.configs.combat.KillAuraConfig;
 import woodp1anks.liquidclient.config.configs.render.*;
 
@@ -25,6 +27,8 @@ public class ConfigManager {
             add(new KeyStrokesConfig());
             add(new PotionEffectsConfig());
             add(new KillAuraConfig());
+            add(new AimBotConfig());
+            add(new AutoClickerConfig());
         }
     };
 

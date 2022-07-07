@@ -8,7 +8,7 @@ public class RotationUtil {
     public static float getRotationsYaw(double posX, double posY, double posZ) {
         EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
         double x = posX - player.posX;
-        double y = posY - (player.posY + (double)player.getEyeHeight());
+        double y = posY - (player.posY + (double)player.getEyeHeight() / 2);
         double z = posZ - player.posZ;
         double dist = MathHelper.sqrt_double(x * x + z * z);
         float yaw = (float)(Math.atan2(z, x) * 180.0 / 3.141592653589793) - 90.0f;
@@ -19,7 +19,7 @@ public class RotationUtil {
     public static float getRotationsPitch(double posX, double posY, double posZ) {
         EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
         double x = posX - player.posX;
-        double y = posY - (player.posY + (double)player.getEyeHeight());
+        double y = posY - (player.posY + (double)player.getEyeHeight() / 2);
         double z = posZ - player.posZ;
         double dist = MathHelper.sqrt_double(x * x + z * z);
         float yaw = (float)(Math.atan2(z, x) * 180.0 / 3.141592653589793) - 90.0f;

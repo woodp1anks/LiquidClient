@@ -13,7 +13,6 @@ public class KillAuraConfig extends Config {
     public void syncStart() {
         KillAura killAura = (KillAura) LiquidClient.modManager.getMod("KillAura");
         killAura.setAntiBotPractice(Boolean.parseBoolean(get("antibotpractice", String.valueOf(false))));
-        killAura.setSwingVisual(Boolean.parseBoolean(get("swingvisual", String.valueOf(false))));
         killAura.setServerSlideRotation(Boolean.parseBoolean(get("serversliderotation", String.valueOf(false))));
         killAura.setCps(Integer.parseInt(get("cps", String.valueOf(10))));
     }
@@ -22,7 +21,6 @@ public class KillAuraConfig extends Config {
     public void syncStop() {
         KillAura killAura = (KillAura) LiquidClient.modManager.getMod("KillAura");
         set("antibotpractice", String.valueOf(killAura.isAntiBotPractice()));
-        set("swingvisual", String.valueOf(killAura.isSwingVisual()));
         set("serversliderotation", String.valueOf(killAura.isServerSlideRotation()));
         set("cps", String.valueOf(killAura.getCps()));
     }
