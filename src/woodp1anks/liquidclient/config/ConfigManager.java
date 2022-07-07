@@ -3,6 +3,7 @@ package woodp1anks.liquidclient.config;
 import com.google.gson.JsonObject;
 import woodp1anks.liquidclient.config.configs.MiscsConfig;
 import woodp1anks.liquidclient.config.configs.ModsConfig;
+import woodp1anks.liquidclient.config.configs.combat.KillAuraConfig;
 import woodp1anks.liquidclient.config.configs.render.*;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class ConfigManager {
             add(new MiscsConfig());
             add(new KeyStrokesConfig());
             add(new PotionEffectsConfig());
+            add(new KillAuraConfig());
         }
     };
 
