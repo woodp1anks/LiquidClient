@@ -32,40 +32,46 @@ public class KillAura extends Mod {
         for (Entity entity : Minecraft.getMinecraft().theWorld.loadedEntityList) {
             if (entity instanceof EntityLivingBase) {
                 EntityLivingBase livingBase = (EntityLivingBase) entity;
-                boolean isTarget = true;
-                if (antiBotPractice) {
-                    EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+                if (!(livingBase == Minecraft.getMinecraft().thePlayer) && !entity.isDead && entity.getDistanceToEntity(Minecraft.getMinecraft().thePlayer) <= 3 && livingBase.getHealth() > 0) {
+                    boolean isTarget = true;
+                    if (antiBotPractice) {
+                        EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
-                    ItemStack botHelmet = livingBase.getCurrentArmor(3);
-                    ItemStack selfHelmet = player.getCurrentArmor(3);
+                        ItemStack botHelmet = livingBase.getCurrentArmor(3);
+                        ItemStack selfHelmet = player.getCurrentArmor(3);
 
-                    ItemStack botChestPlate = livingBase.getCurrentArmor(2);
-                    ItemStack selfChestPlate = player.getCurrentArmor(2);
+                        ItemStack botChestPlate = livingBase.getCurrentArmor(2);
+                        ItemStack selfChestPlate = player.getCurrentArmor(2);
 
-                    ItemStack botLeggings = livingBase.getCurrentArmor(1);
-                    ItemStack selfLeggings = player.getCurrentArmor(1);
+                        ItemStack botLeggings = livingBase.getCurrentArmor(1);
+                        ItemStack selfLeggings = player.getCurrentArmor(1);
 
-                    ItemStack botBoots = livingBase.getCurrentArmor(0);
-                    ItemStack selfBoots = player.getCurrentArmor(0);
+                        ItemStack botBoots = livingBase.getCurrentArmor(0);
+                        ItemStack selfBoots = player.getCurrentArmor(0);
 
-                    if (botBoots != selfBoots || botHelmet != selfHelmet || botLeggings != selfLeggings || botChestPlate != selfChestPlate) {
-                        isTarget = false;
-                    }
-                }
-                if (!(livingBase == Minecraft.getMinecraft().thePlayer) && !entity.isDead && entity.getDistanceToEntity(Minecraft.getMinecraft().thePlayer) <= 3 && livingBase.getHealth() > 0 && isTarget) {
-                    if (serverSlideRotation) {
-                        Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C05PacketPlayerLook(RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ),RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ),Minecraft.getMinecraft().thePlayer.onGround));
-                    } else {
-                        Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
-                        Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
-                    }
-                    if (ticks >= hitTime) {
-                        if (swingVisual) {
-                            ((EntityLivingBase) Minecraft.getMinecraft().thePlayer).swingItem();
+
+                        try {
+                            if (Item.getIdFromItem(botBoots.getItem()) != Item.getIdFromItem(selfBoots.getItem()) || Item.getIdFromItem(botHelmet.getItem()) != Item.getIdFromItem(selfHelmet.getItem()) || Item.getIdFromItem(botLeggings.getItem()) != Item.getIdFromItem(selfLeggings.getItem()) || Item.getIdFromItem(botChestPlate.getItem()) != Item.getIdFromItem(selfChestPlate.getItem())) {
+                                isTarget = false;
+                            }
+                        } catch (NullPointerException ex) {
                         }
-                        Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(new C0APacketAnimation());
-                        Minecraft.getMinecraft().playerController.attackEntity(Minecraft.getMinecraft().thePlayer,entity);
-                        ticks = 0;
+                    }
+                    if (isTarget) {
+                        if (serverSlideRotation) {
+                            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C05PacketPlayerLook(RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ),RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ),Minecraft.getMinecraft().thePlayer.onGround));
+                        } else {
+                            Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
+                            Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
+                        }
+                        if (ticks >= hitTime) {
+                            if (swingVisual) {
+                                ((EntityLivingBase) Minecraft.getMinecraft().thePlayer).swingItem();
+                            }
+                            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(new C0APacketAnimation());
+                            Minecraft.getMinecraft().playerController.attackEntity(Minecraft.getMinecraft().thePlayer,entity);
+                            ticks = 0;
+                        }
                     }
                 }
             }
