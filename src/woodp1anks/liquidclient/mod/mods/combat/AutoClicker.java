@@ -7,6 +7,9 @@ import org.lwjgl.input.Mouse;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
+
 public class AutoClicker extends Mod {
     private int lCps;
     private int rCps;
@@ -23,11 +26,19 @@ public class AutoClicker extends Mod {
         int lClickTime = 20 / lCps;
         int rClickTime = 20 / rCps;
         if (lTicks >= lClickTime && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown()) {
-            KeyBinding.onTick(Minecraft.getMinecraft().gameSettings.keyBindAttack.getKeyCode());
+            try {
+                new Robot().mousePress(InputEvent.BUTTON1_MASK);
+            } catch (AWTException e) {
+                throw new RuntimeException(e);
+            }
             lTicks = 0;
         }
         if (rTicks >= rClickTime && Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
-            KeyBinding.onTick(Minecraft.getMinecraft().gameSettings.keyBindUseItem.getKeyCode());
+            try {
+                new Robot().mousePress(InputEvent.BUTTON3_MASK);
+            } catch (AWTException e) {
+                throw new RuntimeException(e);
+            }
             rTicks = 0;
         }
         lTicks++;
