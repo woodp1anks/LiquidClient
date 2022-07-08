@@ -3,6 +3,7 @@ package woodp1anks.liquidclient.mod;
 import woodp1anks.liquidclient.mod.mods.combat.AimBot;
 import woodp1anks.liquidclient.mod.mods.combat.AutoClicker;
 import woodp1anks.liquidclient.mod.mods.combat.KillAura;
+import woodp1anks.liquidclient.mod.mods.world.Scaffold;
 import woodp1anks.liquidclient.mod.mods.movement.ToggleSprint;
 import woodp1anks.liquidclient.mod.mods.render.*;
 
@@ -84,6 +85,7 @@ public class ModManager {
         mods.add(new KillAura());
         mods.add(new AimBot());
         mods.add(new AutoClicker());
+        mods.add(new Scaffold());
     }
 
     public void onKeyPressed(int key) {

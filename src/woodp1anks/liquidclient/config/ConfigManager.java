@@ -1,6 +1,5 @@
 package woodp1anks.liquidclient.config;
 
-import com.google.gson.JsonObject;
 import woodp1anks.liquidclient.config.configs.MiscsConfig;
 import woodp1anks.liquidclient.config.configs.ModsConfig;
 import woodp1anks.liquidclient.config.configs.combat.AimBotConfig;
@@ -9,11 +8,9 @@ import woodp1anks.liquidclient.config.configs.combat.KillAuraConfig;
 import woodp1anks.liquidclient.config.configs.render.*;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ConfigManager {
     private final List<Config> configs = new ArrayList<Config>() {
