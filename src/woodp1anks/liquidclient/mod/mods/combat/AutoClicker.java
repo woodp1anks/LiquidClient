@@ -27,6 +27,7 @@ public class AutoClicker extends Mod {
         int rClickTime = 20 / rCps;
         if (lTicks >= lClickTime && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown()) {
             KeyBinding.onTick(Minecraft.getMinecraft().gameSettings.keyBindAttack.keyCode);
+            Minecraft.getMinecraft().thePlayer.swingItem();
             lTicks = 0;
         }
         if (rTicks >= rClickTime && Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
