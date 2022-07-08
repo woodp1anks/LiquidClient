@@ -3,7 +3,7 @@ package woodp1anks.liquidclient.mod;
 import woodp1anks.liquidclient.mod.mods.combat.AimBot;
 import woodp1anks.liquidclient.mod.mods.combat.AutoClicker;
 import woodp1anks.liquidclient.mod.mods.combat.KillAura;
-import woodp1anks.liquidclient.mod.mods.world.Scaffold;
+import woodp1anks.liquidclient.mod.mods.player.Scaffold;
 import woodp1anks.liquidclient.mod.mods.movement.ToggleSprint;
 import woodp1anks.liquidclient.mod.mods.render.*;
 

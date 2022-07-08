@@ -1,4 +1,4 @@
-package woodp1anks.liquidclient.mod.mods.world;
+package woodp1anks.liquidclient.mod.mods.player;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -13,7 +13,7 @@ import woodp1anks.liquidclient.mod.Mod;
 public class Scaffold extends Mod {
 
     public Scaffold() {
-        super("Scaffold", Category.World);
+        super("Scaffold", Category.Player);
     }
 
     @Override
