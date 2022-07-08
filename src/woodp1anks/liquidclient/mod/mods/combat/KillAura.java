@@ -2,14 +2,11 @@ package woodp1anks.liquidclient.mod.mods.combat;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.C03PacketPlayer;
-import net.minecraft.network.play.client.C0APacketAnimation;
-import net.minecraft.util.MathHelper;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 import woodp1anks.liquidclient.utils.RotationUtil;
@@ -29,6 +26,9 @@ public class KillAura extends Mod {
     @Override
     public void update() {
         hitTime = 20 / cps;
+
+        EntityLivingBase target = null;
+
         for (Entity entity : Minecraft.getMinecraft().theWorld.loadedEntityList) {
             if (entity instanceof EntityLivingBase) {
                 EntityLivingBase livingBase = (EntityLivingBase) entity;
@@ -65,23 +65,30 @@ public class KillAura extends Mod {
                             isTarget = false;
                         }
                     }
-                    if (isTarget) {
-                        if (serverSlideRotation) {
-                            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C05PacketPlayerLook(RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ),RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ),Minecraft.getMinecraft().thePlayer.onGround));
-                        } else {
-                            Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
-                            Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
-                        }
-                        if (ticks >= hitTime) {
-                            Minecraft.getMinecraft().thePlayer.swingItem();
-                            Minecraft.getMinecraft().playerController.attackEntity(Minecraft.getMinecraft().thePlayer,entity);
-                            //KeyBinding.onTick(Minecraft.getMinecraft().gameSettings.keyBindAttack.getKeyCode());
-                            ticks = 0;
-                        }
+                    if (target == null) {
+                        target = livingBase;
+                    }
+                    if (isTarget && Minecraft.getMinecraft().thePlayer.getDistanceToEntity(livingBase) < Minecraft.getMinecraft().thePlayer.getDistanceToEntity(target)) {
+                        target = livingBase;
                     }
                 }
             }
         }
+
+        if (serverSlideRotation && target != null) {
+            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C05PacketPlayerLook(RotationUtil.getRotationsYaw(target.posX, target.posZ),RotationUtil.getRotationsPitch(target.posX,target.posY,target.posZ),Minecraft.getMinecraft().thePlayer.onGround));
+        } else {
+            if (target != null) {
+                Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(target.posX, target.posZ);
+                Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(target.posX,target.posY,target.posZ);
+            }
+        }
+        if (ticks >= hitTime && target != null) {
+            Minecraft.getMinecraft().thePlayer.swingItem();
+            Minecraft.getMinecraft().playerController.attackEntity(Minecraft.getMinecraft().thePlayer,target);
+            ticks = 0;
+        }
+
         ticks++;
     }
 

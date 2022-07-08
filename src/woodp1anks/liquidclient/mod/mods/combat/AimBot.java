@@ -21,6 +21,8 @@ public class AimBot extends Mod {
 
     @Override
     public void update() {
+        EntityLivingBase target = null;
+
         for (Entity entity : Minecraft.getMinecraft().theWorld.loadedEntityList) {
             if (entity instanceof EntityLivingBase) {
                 EntityLivingBase livingBase = (EntityLivingBase) entity;
@@ -58,16 +60,25 @@ public class AimBot extends Mod {
                         }
 
                     }
-                    if (onlyOnClick && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown() && isTarget) {
-                        Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
-                        Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
-                    } else if (!onlyOnClick && isTarget){
-                        Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(livingBase.posX,livingBase.posY,livingBase.posZ);
-                        Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(livingBase.posX,livingBase.posY,livingBase.posZ);
 
+                    if (target == null) {
+                        target = livingBase;
+                    }
+
+                    if (isTarget && Minecraft.getMinecraft().thePlayer.getDistanceToEntity(livingBase) < Minecraft.getMinecraft().thePlayer.getDistanceToEntity(target)) {
+                        target = livingBase;
                     }
                 }
             }
+        }
+
+        if (onlyOnClick && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown() && target != null) {
+            Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(target.posX, target.posZ);
+            Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(target.posX,target.posY,target.posZ);
+        } else if (!onlyOnClick && target != null){
+            Minecraft.getMinecraft().thePlayer.rotationYaw = RotationUtil.getRotationsYaw(target.posX, target.posZ);
+            Minecraft.getMinecraft().thePlayer.rotationPitch = RotationUtil.getRotationsPitch(target.posX,target.posY,target.posZ);
+
         }
     }
 
