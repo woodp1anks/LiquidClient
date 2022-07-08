@@ -26,19 +26,11 @@ public class AutoClicker extends Mod {
         int lClickTime = 20 / lCps;
         int rClickTime = 20 / rCps;
         if (lTicks >= lClickTime && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown()) {
-            try {
-                new Robot().mousePress(InputEvent.BUTTON1_MASK);
-            } catch (AWTException e) {
-                throw new RuntimeException(e);
-            }
+            KeyBinding.onTick(Minecraft.getMinecraft().gameSettings.keyBindAttack.keyCode);
             lTicks = 0;
         }
         if (rTicks >= rClickTime && Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
-            try {
-                new Robot().mousePress(InputEvent.BUTTON3_MASK);
-            } catch (AWTException e) {
-                throw new RuntimeException(e);
-            }
+            KeyBinding.onTick(Minecraft.getMinecraft().gameSettings.keyBindUseItem.keyCode);
             rTicks = 0;
         }
         lTicks++;
