@@ -3,7 +3,14 @@ package woodp1anks.liquidclient.mod.mods.render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.InventoryEffectRenderer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
@@ -34,15 +41,19 @@ public class PotionEffects extends Mod {
         for (PotionEffect potionEffect : Minecraft.getMinecraft().thePlayer.getActivePotionEffects()) {
             FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
 
+            Minecraft.getMinecraft().getTextureManager().bindTexture(GuiContainer.inventoryBackground);
+
             String durationText = TimeUtil.getAsMinute(potionEffect.getDuration()) + ":" + TimeUtil.getAsSecond(potionEffect.getDuration());
 
-            font.drawStringWithShadow(potionEffect.getEffectName(),x,y,new Color(nameR,nameG,nameB).getRGB());
+            font.drawStringWithShadow(potionEffect.getEffectName() + " " + potionEffect.getAmplifier(),x,y,new Color(nameR,nameG,nameB).getRGB());
 
             y+= font.FONT_HEIGHT + 1;
 
             font.drawStringWithShadow(durationText,x,y,new Color(durationR,durationG,durationB).getRGB());
 
             y+= font.FONT_HEIGHT + 7;
+
+
         }
     }
 

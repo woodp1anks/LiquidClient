@@ -171,6 +171,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
     {
 
         LiquidClient.modManager.getEnabledMods().forEach(Mod::update);
+        LiquidClient.targetManager.update();
 
         if (this.worldObj.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
         {

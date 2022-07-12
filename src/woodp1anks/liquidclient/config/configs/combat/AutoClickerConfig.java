@@ -12,14 +12,18 @@ public class AutoClickerConfig extends Config {
     @Override
     public void syncStart() {
         AutoClicker autoClicker = (AutoClicker) LiquidClient.modManager.getMod("AutoClicker");
-        autoClicker.setlCps(Integer.parseInt(get("lcps", String.valueOf(10))));
-        autoClicker.setrCps(Integer.parseInt(get("rcps", String.valueOf(10))));
+        autoClicker.setlMinCps(Integer.parseInt(get("lmincps", String.valueOf(10))));
+        autoClicker.setlMaxCps(Integer.parseInt(get("lmaxcps", String.valueOf(15))));
+        autoClicker.setrMinCps(Integer.parseInt(get("rmincps", String.valueOf(10))));
+        autoClicker.setrMaxCps(Integer.parseInt(get("rmaxcps", String.valueOf(15))));
     }
 
     @Override
     public void syncStop() {
         AutoClicker autoClicker = (AutoClicker) LiquidClient.modManager.getMod("AutoClicker");
-        set("lcps", String.valueOf(autoClicker.getlCps()));
-        set("rcps", String.valueOf(autoClicker.getrCps()));
+        set("lmincps", String.valueOf(autoClicker.getlMinCps()));
+        set("lmaxcps", String.valueOf(autoClicker.getlMaxCps()));
+        set("rmincps", String.valueOf(autoClicker.getrMinCps()));
+        set("rmaxcps", String.valueOf(autoClicker.getrMaxCps()));
     }
 }

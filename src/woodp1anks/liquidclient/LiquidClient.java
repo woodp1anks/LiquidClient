@@ -3,6 +3,7 @@ package woodp1anks.liquidclient;
 import org.lwjgl.opengl.Display;
 import woodp1anks.liquidclient.command.CommandManager;
 import woodp1anks.liquidclient.config.Config;
+import woodp1anks.liquidclient.target.TargetManager;
 import woodp1anks.liquidclient.utils.RainbowUtil;
 import woodp1anks.liquidclient.config.ConfigManager;
 import woodp1anks.liquidclient.mod.ModManager;
@@ -18,11 +19,13 @@ public class LiquidClient {
     public static ModManager modManager;
     public static ConfigManager configManager;
     public static CommandManager commandManager;
+    public static TargetManager targetManager;
 
     public static void start() {
         modManager = new ModManager();
         configManager = new ConfigManager();
         commandManager = new CommandManager();
+        targetManager = new TargetManager();
 
         modManager.load();
         commandManager.load();

@@ -14,7 +14,8 @@ public class KillAuraConfig extends Config {
         KillAura killAura = (KillAura) LiquidClient.modManager.getMod("KillAura");
         killAura.setAntiBotPractice(Boolean.parseBoolean(get("antibotpractice", String.valueOf(false))));
         killAura.setServerSlideRotation(Boolean.parseBoolean(get("serversliderotation", String.valueOf(false))));
-        killAura.setCps(Integer.parseInt(get("cps", String.valueOf(10))));
+        killAura.setMinCps(Integer.parseInt(get("mincps", String.valueOf(10))));
+        killAura.setMaxCps(Integer.parseInt(get("maxcps", String.valueOf(15))));
     }
 
     @Override
@@ -22,6 +23,7 @@ public class KillAuraConfig extends Config {
         KillAura killAura = (KillAura) LiquidClient.modManager.getMod("KillAura");
         set("antibotpractice", String.valueOf(killAura.isAntiBotPractice()));
         set("serversliderotation", String.valueOf(killAura.isServerSlideRotation()));
-        set("cps", String.valueOf(killAura.getCps()));
+        set("mincps", String.valueOf(killAura.getMinCps()));
+        set("maxcps", String.valueOf(killAura.getMaxCps()));
     }
 }

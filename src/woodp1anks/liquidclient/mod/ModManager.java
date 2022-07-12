@@ -1,11 +1,13 @@
 package woodp1anks.liquidclient.mod;
 
 import woodp1anks.liquidclient.mod.mods.combat.AimBot;
+import woodp1anks.liquidclient.mod.mods.combat.AntiFireball;
 import woodp1anks.liquidclient.mod.mods.combat.AutoClicker;
 import woodp1anks.liquidclient.mod.mods.combat.KillAura;
 import woodp1anks.liquidclient.mod.mods.player.Scaffold;
 import woodp1anks.liquidclient.mod.mods.movement.ToggleSprint;
 import woodp1anks.liquidclient.mod.mods.render.*;
+import woodp1anks.liquidclient.mod.mods.world.Fucker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +88,8 @@ public class ModManager {
         mods.add(new AimBot());
         mods.add(new AutoClicker());
         mods.add(new Scaffold());
+        mods.add(new AntiFireball());
+        mods.add(new Fucker());
     }
 
     public void onKeyPressed(int key) {

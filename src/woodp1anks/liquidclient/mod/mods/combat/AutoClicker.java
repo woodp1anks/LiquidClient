@@ -2,17 +2,16 @@ package woodp1anks.liquidclient.mod.mods.combat;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import woodp1anks.liquidclient.mod.Category;
 import woodp1anks.liquidclient.mod.Mod;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
+import java.util.Random;
 
 public class AutoClicker extends Mod {
-    private int lCps;
-    private int rCps;
+    private int lMinCps;
+    private int lMaxCps;
+    private int rMinCps;
+    private int rMaxCps;
     private int lTicks;
     private int rTicks;
 
@@ -23,6 +22,9 @@ public class AutoClicker extends Mod {
 
     @Override
     public void update() {
+        int lCps = lMinCps + new Random().nextInt(lMaxCps - lMinCps);
+        int rCps = rMinCps + new Random().nextInt(rMaxCps - rMinCps);
+
         int lClickTime = 20 / lCps;
         int rClickTime = 20 / rCps;
         if (lTicks >= lClickTime && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown()) {
@@ -38,19 +40,35 @@ public class AutoClicker extends Mod {
         rTicks++;
     }
 
-    public int getlCps() {
-        return lCps;
+    public int getlMinCps() {
+        return lMinCps;
     }
 
-    public int getrCps() {
-        return rCps;
+    public int getlMaxCps() {
+        return lMaxCps;
     }
 
-    public void setlCps(int lCps) {
-        this.lCps = lCps;
+    public int getrMinCps() {
+        return rMinCps;
     }
 
-    public void setrCps(int rCps) {
-        this.rCps = rCps;
+    public int getrMaxCps() {
+        return rMaxCps;
+    }
+
+    public void setlMinCps(int lMinCps) {
+        this.lMinCps = lMinCps;
+    }
+
+    public void setlMaxCps(int lMaxCps) {
+        this.lMaxCps = lMaxCps;
+    }
+
+    public void setrMinCps(int rMinCps) {
+        this.rMinCps = rMinCps;
+    }
+
+    public void setrMaxCps(int rMaxCps) {
+        this.rMaxCps = rMaxCps;
     }
 }

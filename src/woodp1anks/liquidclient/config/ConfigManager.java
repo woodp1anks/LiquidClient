@@ -2,7 +2,9 @@ package woodp1anks.liquidclient.config;
 
 import woodp1anks.liquidclient.config.configs.MiscsConfig;
 import woodp1anks.liquidclient.config.configs.ModsConfig;
+import woodp1anks.liquidclient.config.configs.TargetConfig;
 import woodp1anks.liquidclient.config.configs.combat.AimBotConfig;
+import woodp1anks.liquidclient.config.configs.combat.AntiFireballConfig;
 import woodp1anks.liquidclient.config.configs.combat.AutoClickerConfig;
 import woodp1anks.liquidclient.config.configs.combat.KillAuraConfig;
 import woodp1anks.liquidclient.config.configs.render.*;
@@ -26,6 +28,8 @@ public class ConfigManager {
             add(new KillAuraConfig());
             add(new AimBotConfig());
             add(new AutoClickerConfig());
+            add(new AntiFireballConfig());
+            add(new TargetConfig());
         }
     };
 
